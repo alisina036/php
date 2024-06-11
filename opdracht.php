@@ -1,8 +1,10 @@
 <html>
+    
   <head>
     <title>Tools For Ever</title>
+    <link rel="stylesheet" href="style.css">
   </head>
-  <body>
+  <body class="grid-layout">
     <script>
         function ajax() {
 
@@ -12,17 +14,29 @@
                     console.log( this.responseText);
                 }
                 };
-                xmlhttp.open("POST", "ajax.php?r=ali", true);
-                xmlhttp.send();
-            }
+                xmlhttp.open("POST", "ajax.php", true);
+                xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xmlhttp.send("r=test");}
             
                 </script>
 
-    <form action="opdracht.php" method="post">
-      <input type="text" name="name">
-      <input type="submit" value="submit">
-      <input type="button" onclick="ajax();">
-    </form>
+            <form action="test2.php" method="post">
+                <input type="text" name="name">
+                <input type="submit" value="submit">
+                <input type="button" value="clear" onclick="window.location.reload(); ajax(); window.location.reload();">
+            </form>
+            <!-- <table>
+                <tr>
+                    <th>test</th>
+                    <th>test</th>
+                    <th>test</th>
+                </tr>
+                <tr>
+                    <td>test</td>
+                    <td>test</td>
+                    <td>test</td>
+                </tr>
+            </table> -->
     <!-- <table>
         <tr>
             <th></th>
@@ -31,6 +45,12 @@
         </tr>
     </table> -->
 </html>
+
+<script>
+    function clear(){
+        window.location.reoad();
+    }
+</script>
 
 <?php
 require ("index.php");
@@ -108,18 +128,18 @@ $conn->select_db("DB");
 // }else{
 //     echo "error" . "<br>";
 // }
-$inputName = $_POST['name'];
+//$inputName = $_POST['name'];
 
 
 // if($inputName === ''){
 //     $conn->query($sql) === false;
 // }
 
-if($inputName === ''){
-    echo "vul iets in";
-}else{
-$statement = "insert into student(studentname) values ('$inputName')";
-$conn->query($statement);
+// if($inputName === ''){
+//     echo "vul iets in";
+// }else{
+// $statement = "insert into student(studentname) values ('$inputName')";
+// $conn->query($statement);
 
 
 $sql = "select * from student;";
@@ -137,16 +157,19 @@ if($resultcheck > 0) {
         
     }
  }
-};
+// };
 
     $clear1 = "delete from student where id > 0;"; 
     $clear2 = "alter table student auto_increment = 0;";
+
+    // if(isset($_POST['name'])){
+    //     //header("location: test2.php?=siuu");
+    // }else{
+    //     echo "welcome";
+    // };
 ?>
 
-        <?php 
         
-        ?>
-
 
 
 

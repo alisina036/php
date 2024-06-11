@@ -11,4 +11,3 @@ $conn->query($clear2);
 
 echo $r;
 ?>
-
