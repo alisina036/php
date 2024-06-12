@@ -11,7 +11,7 @@
                 var xmlhttp = new XMLHttpRequest();
                 xmlhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
-                    console.log( this.responseText);
+                    document.getElementById("text").innerHTML = "";
                 }
                 };
                 xmlhttp.open("POST", "ajax.php", true);
@@ -23,7 +23,7 @@
             <form action="test2.php" method="post">
                 <input type="text" name="name">
                 <input type="submit" value="submit">
-                <input type="button" value="clear" onclick="window.location.reload(); ajax(); window.location.reload();">
+                <input type="button" value="clear" onclick="ajax();">
             </form>
             <!-- <table>
                 <tr>
@@ -45,12 +45,6 @@
         </tr>
     </table> -->
 </html>
-
-<script>
-    function clear(){
-        window.location.reoad();
-    }
-</script>
 
 <?php
 require ("index.php");
@@ -146,8 +140,7 @@ $sql = "select * from student;";
 $result = mysqli_query($conn, $sql);
 $resultcheck = mysqli_num_rows($result);
 
-
-
+echo '<div id="text">';
 if($resultcheck > 0) {
     while($row = mysqli_fetch_assoc($result)) {
     
@@ -158,6 +151,7 @@ if($resultcheck > 0) {
     }
  }
 // };
+echo '</div>';
 
     $clear1 = "delete from student where id > 0;"; 
     $clear2 = "alter table student auto_increment = 0;";

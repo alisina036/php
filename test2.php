@@ -32,7 +32,7 @@ if($resultcheck > 0) {
  }*/
 };
 
-clear();
+// clear();
 exit();
 ?>
 
