@@ -1,23 +1,22 @@
 <html>
     <head>
-        <link rel="stylesheet" href="styletest.css">
+        <link rel="stylesheet" href="fullstack.css">
     </head>
-    <body class="grid-layout">
+    <body class="gridLayout">
         <table>
             <tr>
-                <th id="ID">ID</th>
-                <th>Student Name</th>
-                <th>Password</th>
+                <th id="ID">Bands</th>
+                <th>Genre</th>
             </tr>
             <?php
-                require ("index.php");
+                require ("database.php");
 
-                $sql = "select * from student";
+                $sql = "select * from bands";
                 $result = $conn-> query($sql);
 
                 if($result-> num_rows > 0){
                     while($row = $result-> fetch_assoc()){
-                        echo "<tr><td>" . $row["id"] . "</td><td>" . $row["studentname"] . "</td><td>" . $row["password"] . "</td></tr>";
+                        echo "<tr><td>" . $row["band"] . "</td><td>" . $row["genre"] . "</td></tr>";
                     }
                     echo "</table>";
                 }else{

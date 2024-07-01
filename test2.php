@@ -2,6 +2,7 @@
 header("location: opdracht.php?=back");
 require ("index.php");
 $inputName = $_POST['name'];
+$inputPassword = $_POST['password'];
 
 
 // if($inputName === ''){
@@ -11,7 +12,7 @@ $inputName = $_POST['name'];
 if($inputName === ''){
    // echo "vul iets in";
 }else{
-$statement = "insert into student(studentname) values ('$inputName')";
+$statement = "insert into student(studentname,password) values ('$inputName','$inputPassword')";
 $conn->query($statement);
 
 

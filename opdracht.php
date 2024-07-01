@@ -2,7 +2,7 @@
     
   <head>
     <title>Tools For Ever</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styletest.css">
   </head>
   <body class="grid-layout">
     <script>
@@ -21,9 +21,13 @@
                 </script>
 
             <form action="test2.php" method="post">
-                <input type="text" name="name">
-                <input type="submit" value="submit">
-                <input type="button" value="clear" onclick="ajax();">
+                <p>name:</p>
+                <input type="email" name="name" required placeholder="alisina@gmail.com">
+                <br>
+                <p>Password:</p>
+                <input type="password" name="password" required placeholder="Alisina1980" pattern="[a-5]{8,}">
+                <input type="submit" value="submit" class="submit">
+                <input type="button" value="clear" onclick="ajax();" class="submit">
             </form>
             <!-- <table>
                 <tr>
@@ -145,15 +149,16 @@ if($resultcheck > 0) {
     while($row = mysqli_fetch_assoc($result)) {
     
 
-        echo $row['id'];
-        echo $row['studentname' ] . "<br>";
+        echo $row['id'] . "<br>";
+        echo $row['studentname'] . "<br>";
+        echo $row['password'] . "<br><br>";
         
     }
  }
 // };
 echo '</div>';
 
-    $clear1 = "delete from student where id > 0;"; 
+    $clear1 = "delete from student where id > 0;";
     $clear2 = "alter table student auto_increment = 0;";
 
     // if(isset($_POST['name'])){

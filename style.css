@@ -6,22 +6,20 @@
     color:white;
   }
   form{
-    grid-row: 5;
-    grid-column: 8/13;
-    text-align: center;
-    background-color:rgba(255,255,255,0.5);
-    height: 50px;
-    border-radius: 40px;
+
   }
   input{
+    position: relative;
     height: 50px;
     border-radius: 50px;
-    width: 32.66%;
+    width: 100%;
     font-size: large;
     font-weight: bold;
-    border-color: rgba(255, 255, 255, 1);
+    background: radial-gradient(white, grey);
     background-color: rgba(255, 255, 255, 0.5);
     border-style: solid;
+    text-align: center;
+    transition: 1s;
   }
   .container{
     display: flex;
