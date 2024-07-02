@@ -1,4 +1,7 @@
 <html>
+<head>
+    <title>Registration</title>
+</head>
     <body>
         <header>
             <h1>CAFE</h1>

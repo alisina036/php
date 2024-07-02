@@ -6,7 +6,12 @@
     color:white;
   }
   form{
-
+    grid-row: 5;
+    grid-column: 6/15;
+    text-align: center;
+    background-color: white;
+    border-radius: 25px;
+    height: 200px;
   }
   input{
     position: relative;

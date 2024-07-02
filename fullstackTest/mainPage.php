@@ -1,37 +1,15 @@
 <?php
+session_start();
 require('connection.php');
 $conn->select_db("fullstackDatabase");
 
-// Query to fetch events and associated bands
-$query = "SELECT * FROM events INNER JOIN bands ON events.idevents = bands.idbands";
-$stmt = $conn->prepare($query);
-$stmt->execute();
-$result = $stmt->get_result();
+// Query to fetch events
+$query = "SELECT * FROM events";
+$result = $conn->query($query);
 
 $events = "";
 while ($row = $result->fetch_assoc()) {
-    $events .= "<option>{$row['eventNaam']} </option>";
-}
-
-// Handle form submission
-$bandList = "";
-if (isset($_POST['submit'])) {
-    $selectedEvent = $_POST['events'];
-
-    // Query to fetch bands for the selected event
-    $bandQuery = "SELECT bands.bandNaam FROM events 
-                  INNER JOIN bands ON events.idevents = bands.idbands 
-                  WHERE events.eventNaam = ?";
-    $bandStmt = $conn->prepare($bandQuery);
-    $bandStmt->bind_param("s", $selectedEvent);
-    $bandStmt->execute();
-    $bandResult = $bandStmt->get_result();
-
-    $bandList = "<h3>Bands playing at the selected event:</h3><ul>";
-    while ($bandRow = $bandResult->fetch_assoc()) {
-        $bandList .= "<li>{$bandRow['bandNaam']}</li>";
-    }
-    $bandList .= "</ul>";
+    $events .= "<option value='{$row['idevents']}'>{$row['eventNaam']}</option>";
 }
 ?>
 
@@ -39,29 +17,48 @@ if (isset($_POST['submit'])) {
 <html>
 <head>
     <title>Main Page</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
+<body class="grid-layout">
 <header>
-            <h1>CAFE</h1>
-            <a href="loginPage.php"><button>login</button></a>
-        <header>
-<body class="gridLayout">
+        <h1>CAFE</h1>
+        <div class="header-buttons">
+            <a href="loginPage.php"><button><img src="images/account.jpg" alt="Account"></button></a>
+            <a href="mainPage.php"><button><img src="images/home.jpg" alt="Home"></button></a>
+        </div>
+    </header>
     <div class="container">
         <h3>Our events</h3>
-        <form method="post">
+        <form id="eventForm">
             <div>
                 <label for="menu">Events</label>
                 <select name="events" id="menu">
                     <?php echo $events; ?>
                 </select>
             </div>
-            <input type="submit" name="submit" value="Show Bands">
+            <div id="showBandsBtn"><button type="button">Show Bands</button></div>
         </form>
-        <?php echo "<ul class='band-list'>$bandList</ul>"; ?> 
-
-        <a class="login-btn" href="http://127.0.0.1/php/fullstack project/loginPage.php">
-            <i class="fas fa-lock"></i> Login
-        </a>
+        <div id="bandList"></div>
     </div>
- 
+
+    <script>
+        $(document).ready(function() {
+            $('#showBandsBtn').click(function() {
+                var selectedEventId = $('#menu').val();
+                $.ajax({
+                    url: 'getBands.php',
+                    type: 'POST',
+                    data: { eventId: selectedEventId },
+                    success: function(response) {
+                        $('#bandList').html(response);
+                    },
+                    error: function() {
+                        alert('Error retrieving bands.');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

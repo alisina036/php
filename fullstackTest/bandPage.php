@@ -37,17 +37,22 @@ alert("Band added succesfully");
 </script>
 
 <html>
-    <head>
-        <title>Fullstack</title>
-        <link rel="stylesheet" href="fullstack.css">
-    </head>
+<head>
+    <title>Bands</title>
+    <link rel="stylesheet" href="style.css">
+</head>
     <body class="gridlayout">
     <header>
-            <h1>CAFE</h1>
-            <a href="loginPage.php"><button>login</button></a>
-        <header>
+        <h1>CAFE</h1>
+        <div class="header-buttons">
+            <a href="loginPage.php"><button><img src="images/account.jpg" alt="Account"></button></a>
+            <a href="mainPage.php"><button><img src="images/home.jpg" alt="Home"></button></a>
+            <a href="bandPage.php"><button><img src="images/music.jpg" alt="Bands"></button></a>
+            <a href="eventPage.php"><button><img src="images/calender.jpg" alt="Events"></button></a>
+            <a href="bandEventPage.php"><button><img src="images/pairing.jpg" alt="Pairing"></button></a>
+        </div>
+    </header>
         <h1 class="welcomeText"> Add here your band information.</h1>
-        <h2 class="title">Cafe</h2>
     <form id="form" action="bandPageQuery.php" method="POST">
                 <input id="nameInput" required type="text"  name="name" placeholder="Band Name here">
                   <select id="genreInput" required name="genre">

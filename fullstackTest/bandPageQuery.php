@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $sql = "INSERT INTO bands (bandNaam, genre) VALUES ('$inputText', '$inputGenre');";
 
     if (mysqli_query($conn, $sql)) {
-        header("Location: bandPage.php?back");
+        header("Location: bandEventPage.php?back");
         exit();
 
     } else {
