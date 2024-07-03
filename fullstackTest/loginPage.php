@@ -24,7 +24,7 @@
             <input type="email" placeholder="email" name="email" required>
             <input type="password" placeholder="password" name="password" required>
             <input type="date" name="date" required>
-            <input type="text" placeholder="check" name="check" required>
+            <input type="password" placeholder="check" name="check" required>
             <input type="submit" value="submit">
         </form>
     </body>

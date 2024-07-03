@@ -14,7 +14,7 @@ if ($inputCheck === "password") {
     
     if (mysqli_query($conn, $sql)) {
         
-        header("location: registrationPage.php");
+        header("location: eventPage.php");
         exit();
     } else {
         

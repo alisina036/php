@@ -188,21 +188,30 @@ form #bands input[type="checkbox"] {
     display: inline-block;
     margin: 0 10px;
     background: linear-gradient(45deg, #ff5722, #ff0081); /* Gradient background */
-    color: #fff; /* White text color */
-    padding: 12px 24px;
-    font-size: 18px;
+    color: #fff; /* Witte tekstkleur */
+    padding: 10px 20px;
+    font-size: 16px;
     border: none;
-    border-radius: 15px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Verbeterde schaduw */
     cursor: pointer;
-    text-align: center; /* Centered text */
-    transition: background 0.3s, transform 0.3s;
+    text-align: center; /* Centraal uitgelijnde tekst */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Soepele overgang */
+}
+
+#showBandsBtn button {
+    background-color: transparent; /* Zorg ervoor dat de knop zelf geen achtergrondkleur heeft */
+    border: none; /* Verwijder eventuele randen */
+    color: inherit; /* Neemt kleur over van de ouder */
+    font-size: inherit; /* Neemt lettergrootte over van de ouder */
+    cursor: inherit; /* Neemt cursor over van de ouder */
 }
 
 #showBandsBtn:hover {
-    background: linear-gradient(45deg, #ff0081, #ff5722); /* Reverse gradient */
-    transform: scale(1.05);
+    background-color: #00acc1; /* Donkerder blauw bij hover */
+    transform: scale(1.05); /* Kleinere vergroting */
 }
+
 
 /* Responsive Styles for Portrait Mode */
 @media (max-width: 768px) and (orientation: portrait) {
