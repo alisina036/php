@@ -5,21 +5,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $inputMail = mysqli_real_escape_string($conn, $_POST['mail']);
     $inputPassword = mysqli_real_escape_string($conn, $_POST['password']);
 
-    $sql = "SELECT * FROM users WHERE `E-Mail` = '$inputMail' AND `password` = '$inputPassword'";
+    // Fetch the hashed password from the database
+    $sql = "SELECT `password` FROM users WHERE `E-Mail` = '$inputMail'";
     $result = mysqli_query($conn, $sql);
-
+    
     if (mysqli_num_rows($result) > 0) {
-        // User credentials are correct
         $row = mysqli_fetch_assoc($result);
-        $userData = implode(', ', $row);
+        $hashedPassword = $row['password']; // This is the hashed password from the database
 
-        // echo "You are logged in! Your user data is: $userData";
-        // echo "You are logged in!";
-        header("Location: eventPage.php?back");
-        exit();
+        // Verify the password entered by the user against the hashed password
+        if (password_verify($inputPassword, $hashedPassword)) {
+            header("Location: loginPageQuery.php");
+            exit();
+        } else {
+            echo "Error: Incorrect password.";
+        }
     } else {
-        // User credentials are incorrect
-        header("location: loginPage.php");
+        echo "Error: User not found.";
     }
 }
 ?>
